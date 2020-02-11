@@ -162,12 +162,12 @@ class BuildConf(object):
                 print('Removing ' + path)
             try:
                 shutil.rmtree(path)
-            except OSError, err:
+            except OSError as err:
                 if err.errno != os.errno.ENOENT:
                     raise
         try:
             os.makedirs(path)
-        except OSError, err:
+        except OSError as err:
             if err.errno != os.errno.EEXIST:
                 raise
 
@@ -241,19 +241,19 @@ class BuildConf(object):
         if self.__args.config_file:
             config = ConfigParser.ConfigParser()
             config.read(self.__args.config_file)
-            uri = config.get(CFG_SECTION_PATH, CFG_OPTION_WORKSPACE_DIR, 1)
+            uri = config.get(CFG_SECTION_PATH, CFG_OPTION_WORKSPACE_DIR)
             if uri:
                 self.__workspace_base_dir = BuildConf.expand_path(uri)
-            uri = config.get(CFG_SECTION_PATH, CFG_OPTION_STORAGE_DIR, 1)
+            uri = config.get(CFG_SECTION_PATH, CFG_OPTION_STORAGE_DIR)
             if uri:
                 self.__workspace_storage_base_dir = BuildConf.expand_path(uri)
-            uri = config.get(CFG_SECTION_PATH, CFG_OPTION_CACHE_DIR, 1)
+            uri = config.get(CFG_SECTION_PATH, CFG_OPTION_CACHE_DIR)
             if uri:
                 self.__workspace_cache_base_dir = BuildConf.expand_path(uri)
-            uri = config.get(CFG_SECTION_GIT, CFG_OPTION_XT_HISTORY, 1)
+            uri = config.get(CFG_SECTION_GIT, CFG_OPTION_XT_HISTORY)
             if uri:
                 self.__xt_history_uri = uri
-            uri = config.get(CFG_SECTION_GIT, CFG_OPTION_XT_MANIFEST, 1)
+            uri = config.get(CFG_SECTION_GIT, CFG_OPTION_XT_MANIFEST)
             if uri:
                 self.__xt_manifest_uri = uri
             self.__xt_local_conf_options = []

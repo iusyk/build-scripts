@@ -22,13 +22,13 @@ def copy_file(src, dst, fname):
     dst = os.path.join(dst, fname)
     try:
         os.remove(dst)
-    except OSError, err:
+    except OSError as err:
         if err.errno != os.errno.ENOENT:
             raise
     try:
         # copy with file stats
         shutil.copy2(src, dst)
-    except IOError, err:
+    except IOError as err:
         if err.errno != os.errno.ENOENT:
             raise
 
@@ -36,12 +36,12 @@ def copy_file(src, dst, fname):
 def copy_dir(src, dst):
     try:
         shutil.rmtree(dst)
-    except OSError, err:
+    except OSError as err:
         if err.errno != os.errno.ENOENT:
             raise
     try:
         shutil.copytree(src, dst, True)
-    except OSError, err:
+    except OSError as err:
         if err.errno != os.errno.ENOENT:
             raise
 
